@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const posts = await import.meta.glob('../../content/writing/*.md', { eager: true });
+  return Object.entries(posts).map(([path, post]: [string, any]) => {
+    const slug = path.split('/').pop()!.replace('.md', '');
+    return { params: { slug }, props: { post } };
+  });
+}
+
+const { post } = Astro.props;
+const { title, date, subtitle } = post.frontmatter;
+const { Content } = post;
+
+const formatted = new Date(date).toLocaleDateString('en-GB', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+---
+
+<Base title={`${title} — Andi Monari`} description={subtitle}>
+  <article>
+    <section class="post-header">
+      <div class="container">
+        <a href="/#writing" class="back-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+          Writing
+        </a>
+        <div class="post-meta">
+          <span>{formatted}</span>
+        </div>
+        <h1 class="post-title">{title}</h1>
+        {subtitle && <p class="post-subtitle">{subtitle}</p>}
+      </div>
+    </section>
+    <section class="post-body">
+      <div class="container">
+        <div class="prose">
+          <Content />
+        </div>
+      </div>
+    </section>
+  </article>
+</Base>
