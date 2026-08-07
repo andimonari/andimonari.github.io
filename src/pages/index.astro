@@ -1,6 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
 
+const postFiles = await import.meta.glob('../../writing/*.md', { eager: true });
+const posts = Object.entries(postFiles)
+  .map(([path, post]: [string, any]) => ({
+    slug: path.split('/').pop()!.replace('.md', ''),
+    title: post.frontmatter.title,
+    date: post.frontmatter.date,
+    display: new Date(post.frontmatter.date).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }),
+  }))
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
 const projects = [
   {
     name: 'LifeLessonsVault',
@@ -8,7 +18,7 @@ const projects = [
     description: 'A personal library for life knowledge — stories, lessons, recipes, family wisdom. Record in text, audio, or video. Keep it private, share with family, or publish to the world.',
     tags: ['React', 'Firebase', 'AI', 'PWA'],
     status: 'live' as const,
-    live: 'https://lifelessonsvault.com',
+    live: 'https://lifelessonsvault-4b510.web.app/home',
     github: 'https://github.com/andimonari/lifelessonsvault',
   },
   {
@@ -88,10 +98,12 @@ const projects = [
       <p class="section-label">// writing</p>
       <h2 class="section-title">Thinking out loud</h2>
       <div class="writing-list">
-        <a href="/writing/why-i-built-lifelessonsvault" class="writing-item">
-          <span class="writing-title">Why I built LifeLessonsVault instead of using Notion</span>
-          <span class="writing-date">Aug 2026</span>
-        </a>
+        {posts.map((p) => (
+          <a href={`/writing/${p.slug}`} class="writing-item">
+            <span class="writing-title">{p.title}</span>
+            <span class="writing-date">{p.display}</span>
+          </a>
+        ))}
       </div>
       <p class="writing-cta">More posts coming — building in public means writing in public.</p>
     </div>
