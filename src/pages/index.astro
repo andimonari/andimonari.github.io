@@ -16,7 +16,7 @@ const projects = [
     name: 'LifeLessonsVault',
     tagline: 'Capture what matters before it is forgotten.',
     description: 'A personal library for life knowledge — stories, lessons, recipes, family wisdom. Record in text, audio, or video. Keep it private, share with family, or publish to the world.',
-    tags: ['React', 'Firebase', 'AI', 'PWA'],
+    tags: ['React', 'Firebase', 'AI'],
     status: 'live' as const,
     live: 'https://lifelessonsvault-4b510.web.app/home',
     github: 'https://github.com/andimonari/lifelessonsvault',
@@ -34,55 +34,62 @@ const projects = [
 ---
 
 <Base title="Andi Monari — Builder, AI Products">
+
   <!-- Hero -->
   <section class="hero">
-    <div class="container">
-      <p class="terminal-prompt">whoami</p>
-      <h1 class="hero-name">Andi Monari<span class="cursor"></span></h1>
-      <p class="hero-role">// builder · Cambridge, UK</p>
-      <p class="hero-narrative">
+    <div class="wrap">
+      <p class="kicker">Builder · Cambridge, UK</p>
+      <h1>Building with AI.</h1>
+      <p class="lede">
         Two decades in corporate strategy gave me a clear view of what problems actually cost people.
-        <strong>Now I build the tools to solve them</strong> — starting with AI-native products that are
+        Now I build the tools to solve them — starting with AI-native products that are
         simple enough for anyone to use and useful enough to last.
       </p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn-primary">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+      <div class="cta-row">
+        <a href="#projects" class="btn primary btn--lg">
           See what I'm building
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
         </a>
-        <a href="#writing" class="btn-ghost">Read the thinking →</a>
+        <a href="#writing" class="btn secondary btn--lg">Read the thinking</a>
       </div>
+      <p class="hero-foot">
+        I'm not a lifelong engineer. I started coding seriously in 2025, working almost exclusively with AI tools.
+        <strong>The bottleneck is product thinking — knowing what to build and why.</strong>
+      </p>
     </div>
   </section>
 
   <!-- Projects -->
-  <section id="projects">
-    <div class="container">
-      <p class="section-label">// projects</p>
-      <h2 class="section-title">What I'm shipping</h2>
-      <div class="projects-grid">
+  <section id="projects" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Projects</p>
+        <h2>What I'm shipping</h2>
+        <p>Each project starts with a real problem. The technology follows from that, not the other way around.</p>
+      </div>
+      <div class="card-grid card-grid--2">
         {projects.map((p) => (
-          <article class="project-card">
-            <div class="project-header">
-              <h3 class="project-name">{p.name}</h3>
-              <span class={`project-status status-${p.status}`}>
+          <article class="card">
+            <div class="card-header">
+              <h3>{p.name}</h3>
+              <span class={`card-status status-${p.status}`}>
                 {p.status === 'live' ? '● live' : '◐ building'}
               </span>
             </div>
-            <p style="font-family: var(--mono); font-size: 13px; color: var(--accent);">{p.tagline}</p>
-            <p class="project-desc">{p.description}</p>
-            <div class="project-tags">
+            <p class="card-tagline">{p.tagline}</p>
+            <p>{p.description}</p>
+            <div class="card-tags">
               {p.tags.map((t) => <span class="tag">{t}</span>)}
             </div>
-            <div class="project-links">
+            <div class="card-links">
               {p.live && (
-                <a href={p.live} class="project-link" target="_blank" rel="noopener noreferrer">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                <a href={p.live} class="card-link" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                   Live site
                 </a>
               )}
-              <a href={p.github} class="project-link" target="_blank" rel="noopener noreferrer">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              <a href={p.github} class="card-link" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
                 Source
               </a>
             </div>
@@ -93,37 +100,48 @@ const projects = [
   </section>
 
   <!-- Writing -->
-  <section id="writing">
-    <div class="container">
-      <p class="section-label">// writing</p>
-      <h2 class="section-title">Thinking out loud</h2>
-      <div class="writing-list">
-        {posts.map((p) => (
-          <a href={`/writing/${p.slug}`} class="writing-item">
-            <span class="writing-title">{p.title}</span>
-            <span class="writing-date">{p.display}</span>
-          </a>
-        ))}
+  <section id="writing" class="section section--tint">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Writing</p>
+        <h2>Thinking out loud</h2>
+        <p>Build logs, product thinking, and observations on AI tools. Not tutorials — notes from someone learning in public.</p>
       </div>
-      <p class="writing-cta">More posts coming — building in public means writing in public.</p>
+      {posts.length > 0 ? (
+        <div class="writing-list">
+          {posts.map((p) => (
+            <a href={`/writing/${p.slug}`} class="writing-item">
+              <span class="writing-title">{p.title}</span>
+              <span class="writing-date">{p.display}</span>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p class="writing-cta">First post coming soon.</p>
+      )}
+      {posts.length > 0 && (
+        <p class="writing-cta">More posts coming — building in public means writing in public.</p>
+      )}
     </div>
   </section>
 
   <!-- About -->
-  <section id="about">
-    <div class="container">
-      <p class="section-label">// about</p>
-      <h2 class="section-title">The longer version</h2>
-      <div class="about-text">
+  <section id="about" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">About</p>
+        <h2>The longer version</h2>
+      </div>
+      <div class="about-prose">
         <p>
           I spent twenty years in corporate strategy and operations — long enough to understand how organisations
           work, where they fail, and what knowledge gets lost in the noise. <strong>I'm now applying that experience
           to building software</strong>, specifically AI-native products that solve real problems for real people.
         </p>
         <p>
-          I'm not a lifelong engineer. I started coding seriously in 2025, working almost exclusively with
-          AI coding tools. I find the combination of domain knowledge and modern AI tooling more interesting than
-          either alone — you can move fast when you know exactly what you're building and why.
+          I started coding seriously in 2025, working almost exclusively with AI coding tools. I find the
+          combination of domain knowledge and modern AI tooling more interesting than either alone — you can move
+          fast when you know exactly what you're building and why.
         </p>
         <p>
           Based in <strong>Cambridge, UK</strong>. Building in public. Happy to talk about products, AI tools,
@@ -132,4 +150,5 @@ const projects = [
       </div>
     </div>
   </section>
+
 </Base>
