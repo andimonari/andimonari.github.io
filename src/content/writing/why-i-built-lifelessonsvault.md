@@ -2,6 +2,7 @@
 title: "Why I built LifeLessonsVault instead of using Notion"
 date: "2026-08-01"
 subtitle: "The tools we reach for shape what we build. For preserving life knowledge, general-purpose tools aren't good enough."
+draft: false
 ---
 
 My mother has a notebook. Actually, she has several — filled with recipes, notes from her parents, things she wants to tell her grandchildren. They're written in a mix of Italian and English, some pages stuck together, no particular order. Irreplaceable. Also completely inaccessible.

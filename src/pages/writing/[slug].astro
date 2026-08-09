@@ -1,24 +1,27 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await import.meta.glob('../../../writing/*.md', { eager: true });
-  return Object.entries(posts).map(([path, post]: [string, any]) => {
-    const slug = path.split('/').pop()!.replace('.md', '');
-    return { params: { slug }, props: { post } };
-  });
+  const posts = await getCollection('writing', ({ data }) => import.meta.env.DEV || !data.draft);
+  return posts.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
 }
 
-const { post } = Astro.props;
-const { title, date, subtitle } = post.frontmatter;
-const { Content } = post;
+const { entry } = Astro.props;
+const { title, date, subtitle } = entry.data;
+const { Content, remarkPluginFrontmatter } = await entry.render();
 
 const formatted = new Date(date).toLocaleDateString('en-GB', {
   year: 'numeric', month: 'long', day: 'numeric',
 });
+const minutesRead = remarkPluginFrontmatter?.minutesRead;
+const ogImageUrl = `/og/${entry.slug}.png`;
 ---
 
-<Base title={`${title} — Andi Monari`} description={subtitle}>
+<Base title={`${title} — Andi Monari`} description={subtitle} ogImage={ogImageUrl}>
   <article>
     <section class="page-header">
       <div class="wrap">
@@ -27,7 +30,9 @@ const formatted = new Date(date).toLocaleDateString('en-GB', {
           Writing
         </a>
         <p class="kicker">Essay</p>
-        <div class="post-meta">{formatted}</div>
+        <div class="post-meta">
+          {formatted} {minutesRead && `· ${minutesRead}`}
+        </div>
         <h1 class="post-title">{title}</h1>
         {subtitle && <p class="post-subtitle">{subtitle}</p>}
       </div>

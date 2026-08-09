@@ -1,15 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
 
-const postFiles = await import.meta.glob('../../writing/*.md', { eager: true });
-const posts = Object.entries(postFiles)
-  .map(([path, post]: [string, any]) => ({
-    slug: path.split('/').pop()!.replace('.md', ''),
-    title: post.frontmatter.title,
-    date: post.frontmatter.date,
-    display: new Date(post.frontmatter.date).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }),
+const allPosts = await getCollection('writing', ({ data }) => import.meta.env.DEV || !data.draft);
+const posts = allPosts
+  .map((post) => ({
+    slug: post.slug,
+    title: post.data.title,
+    date: post.data.date,
+    display: new Date(post.data.date).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }),
   }))
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
 
 const projects = [
   {
@@ -120,7 +122,7 @@ const projects = [
         <p class="writing-cta">First post coming soon.</p>
       )}
       {posts.length > 0 && (
-        <p class="writing-cta">More posts coming — building in public means writing in public.</p>
+        <p class="writing-cta">More posts coming — building in public means writing in public. <a href="/rss.xml" target="_blank">Subscribe via RSS</a></p>
       )}
     </div>
   </section>
