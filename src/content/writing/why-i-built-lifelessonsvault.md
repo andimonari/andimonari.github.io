@@ -27,7 +27,7 @@ The categories are pre-defined (family history, life lessons, recipes, career wi
 
 ## What this means for AI tools
 
-I built the entire thing with Claude Code and Claude Sonnet. I'm not a trained software engineer — I came from strategy and operations. What I found is that AI coding tools don't just help you write code faster; they change what's feasible to attempt.
+I built the entire thing with Claude Code and Claude Sonnet. While I started my career in software engineering back in 2002 on HP-UX systems, I hadn't been in a technical role since 2008, spending the intervening years in strategy and operations. Returning to building with modern AI tools showed me that AI coding tools don't just help you write code faster; they change what's feasible to attempt.
 
 A decade ago, a non-engineer with a product idea would spend months getting to a working prototype, assuming they got there at all. Now the bottleneck is product thinking — knowing what to build and why — not technical execution. That's a genuine shift, and it's the reason I'm building in public.
 
