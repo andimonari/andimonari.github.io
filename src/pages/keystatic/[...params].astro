@@ -1,0 +1,17 @@
+---
+import { Keystatic } from '../../components/KeystaticApp';
+
+export const prerender = false;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Keystatic CMS</title>
+  </head>
+  <body style="margin: 0; padding: 0;">
+    <Keystatic client:only="react" />
+  </body>
+</html>
