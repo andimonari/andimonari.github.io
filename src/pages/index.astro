@@ -1,22 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
-import { getCollection } from 'astro:content';
-
-const allPosts = await getCollection('writing', ({ data }) => import.meta.env.DEV || !data.draft);
-const posts = allPosts
-  .map((post) => ({
-    slug: post.slug,
-    title: post.data.title,
-    subtitle: post.data.subtitle,
-    date: post.data.date,
-    display: new Date(post.data.date).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }),
-  }))
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 ---
 
 <Base
   title="Andi Monari — Building useful software"
-  description="Andi Monari builds practical, AI-enabled products informed by a background in software engineering, strategy, and operations. Explore LifeLessonsVault, CambridgeLocals, and notes from the work."
+  description="Andi Monari builds practical, AI-enabled products informed by a background in software engineering, strategy, and operations. Explore Roundwise and CambridgeLocals."
 >
   <main>
     <section class="hero" aria-labelledby="intro-title">
@@ -60,23 +48,25 @@ const posts = allPosts
         <div class="project-list">
           <article class="project-card">
             <div class="project-content">
-              <div class="project-overline"><span>01 / FAMILY KNOWLEDGE</span><span class="status status-live"><i aria-hidden="true"></i> LIVE</span></div>
-              <h3>LifeLessonsVault</h3>
-              <p class="project-tagline">Keep the stories that make a family yours.</p>
-              <p class="project-description">A personal library for stories, lessons, recipes, and family wisdom. Capture them in text, audio, or video; decide what stays private and what to share.</p>
+              <div class="project-overline"><span>01 / INTERVIEW PRACTICE</span><span class="status status-building"><i aria-hidden="true"></i> IN PROGRESS</span></div>
+              <h3>Roundwise</h3>
+              <p class="project-tagline">Practice the interview before it counts.</p>
+              <p class="project-description">A mock interview platform that uses a candidate’s CV to shape a timed, spoken interview with an AI panel. Afterwards, it returns scored feedback grounded in the conversation.</p>
               <div class="project-bottom">
-                <div class="project-tags" aria-label="Technologies"><span>React</span><span>Firebase</span><span>AI</span></div>
-                <div class="project-links"><a href="https://lifelessonsvault-4b510.web.app/home" target="_blank" rel="noopener noreferrer">Visit product <span aria-hidden="true">↗</span></a><a href="https://github.com/andimonari/lifelessonsvault" target="_blank" rel="noopener noreferrer">Source <span aria-hidden="true">↗</span></a></div>
+                <div class="project-tags" aria-label="Technologies"><span>Next.js</span><span>Voice AI</span><span>Fastify</span></div>
               </div>
             </div>
-            <div class="project-art vault-art" aria-hidden="true">
-              <div class="art-label">LIFE / LESSONS / VAULT</div>
-              <div class="vault-stack">
-                <div class="memory-card memory-card--back"><span>03</span><strong>Family wisdom</strong></div>
-                <div class="memory-card memory-card--middle"><span>02</span><strong>Recipes</strong></div>
-                <div class="memory-card memory-card--front"><span>01</span><strong>Stories worth keeping.</strong><small>Preserve · Remember · Share</small></div>
+            <div class="project-art roundwise-art" aria-hidden="true">
+              <div class="art-label">ROUNDWISE / PRACTICE ROOM</div>
+              <div class="roundwise-orbit">
+                <span class="orbit-ring orbit-ring--outer"></span>
+                <span class="orbit-ring orbit-ring--inner"></span>
+                <span class="orbit-core">RW</span>
+                <span class="orbit-node orbit-node--one"></span>
+                <span class="orbit-node orbit-node--two"></span>
+                <span class="orbit-node orbit-node--three"></span>
               </div>
-              <div class="art-corner">✳</div>
+              <div class="roundwise-caption"><span>Practice. Reflect. Improve.</span><small>01 / 02 / 03</small></div>
             </div>
           </article>
 
@@ -101,23 +91,15 @@ const posts = allPosts
       </div>
     </section>
 
-    <section id="writing" class="section notes-section" aria-labelledby="writing-title">
+    <section id="approach" class="section notes-section" aria-labelledby="approach-title">
       <div class="wrap notes-grid">
         <div class="notes-main">
-          <p class="kicker">02 / FIELD NOTES</p>
-          <h2 id="writing-title">Thinking out loud.</h2>
-          <p class="notes-intro">Short notes on building, product decisions, and what AI tools make possible.</p>
-          {posts.length > 0 ? (
-            <div class="writing-list">
-              {posts.map((p) => (
-                <a href={`/writing/${p.slug}`} class="writing-item">
-                  <span class="writing-copy"><strong>{p.title}</strong>{p.subtitle && <small>{p.subtitle}</small>}</span>
-                  <span class="writing-end"><time datetime={new Date(p.date).toISOString().slice(0, 10)}>{p.display}</time><span aria-hidden="true">↗</span></span>
-                </a>
-              ))}
-            </div>
-          ) : <p class="writing-cta">First note coming soon.</p>}
-          <a class="rss-link" href="/rss.xml">Subscribe via RSS <span aria-hidden="true">↗</span></a>
+          <p class="kicker">02 / APPROACH</p>
+          <h2 id="approach-title">Useful beats clever.</h2>
+          <div class="approach-copy">
+            <p>The hard part is deciding what to build. I start with the real task someone faces, remove avoidable friction, and use modern AI tools to turn that understanding into a working product.</p>
+            <p>Roundwise helps people prepare for interviews by practising aloud and seeing grounded feedback. CambridgeLocals brings scattered local information together for people finding their feet in a new city. Different problems, same starting point: make the next step easier.</p>
+          </div>
         </div>
         <div id="elsewhere" class="contact-panel">
           <p class="kicker">03 / ELSEWHERE</p>
