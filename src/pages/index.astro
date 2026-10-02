@@ -7,146 +7,125 @@ const posts = allPosts
   .map((post) => ({
     slug: post.slug,
     title: post.data.title,
+    subtitle: post.data.subtitle,
     date: post.data.date,
     display: new Date(post.data.date).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }),
   }))
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-
-const projects = [
-  {
-    name: 'LifeLessonsVault',
-    tagline: 'Capture what matters before it is forgotten.',
-    description: 'A personal library for life knowledge — stories, lessons, recipes, family wisdom. Record in text, audio, or video. Keep it private, share with family, or publish to the world.',
-    tags: ['React', 'Firebase', 'AI'],
-    status: 'live' as const,
-    live: 'https://lifelessonsvault-4b510.web.app/home',
-    github: 'https://github.com/andimonari/lifelessonsvault',
-  },
-  {
-    name: 'CambridgeLocals',
-    tagline: 'Moving to Cambridge? Start here.',
-    description: 'A practical guide for new arrivals in Cambridge — neighbourhoods, schools, local services, community groups. Built because the information exists but never in one place.',
-    tags: ['Next.js', 'TypeScript', 'Prisma'],
-    status: 'building' as const,
-    live: null,
-    github: 'https://github.com/andimonari/cambridgelocals',
-  },
-];
 ---
 
-<Base title="Andi Monari — Builder, AI Products">
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="wrap">
-      <p class="kicker">Builder · Cambridge, UK</p>
-      <h1>Building with AI.</h1>
-      <p class="lede">
-        Two decades in corporate strategy gave me a clear view of what problems actually cost people.
-        Now I build the tools to solve them — starting with AI-native products that are
-        simple enough for anyone to use and useful enough to last.
-      </p>
-      <div class="cta-row">
-        <a href="#projects" class="btn primary btn--lg">
-          See what I'm building
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
-        </a>
-        <a href="#writing" class="btn secondary btn--lg">Read the thinking</a>
+<Base
+  title="Andi Monari — Building useful software"
+  description="Andi Monari builds practical, AI-enabled products informed by a background in software engineering, strategy, and operations. Explore LifeLessonsVault, CambridgeLocals, and notes from the work."
+>
+  <main>
+    <section class="hero" aria-labelledby="intro-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="kicker"><span class="kicker-mark" aria-hidden="true"></span> Andi Monari <span class="kicker-sep">/</span> Cambridge, UK</p>
+          <h1 id="intro-title">Ideas into<br /><em>useful software.</em></h1>
+          <p class="hero-lede">
+            I build practical products with AI, guided by a simple question:
+            <strong>what would make this easier for a real person?</strong>
+          </p>
+          <p class="hero-support">
+            I started in software engineering, spent the next chapter in strategy and operations,
+            and came back to hands-on building in 2025. That mix helps me find the problem worth solving before reaching for the tools.
+          </p>
+          <div class="cta-row">
+            <a href="#projects" class="btn primary btn--lg">Explore the work <span aria-hidden="true">↗</span></a>
+            <a href="https://github.com/andimonari" target="_blank" rel="noopener noreferrer" class="text-link">Find me on GitHub <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <aside class="hero-aside" aria-label="A path from engineering to product building">
+          <div class="aside-top"><span>THE PATH HERE</span><span>2002 → NOW</span></div>
+          <ol class="path-list">
+            <li><span class="path-year">2002</span><div><strong>Software engineering</strong><span>Started out on HP-UX systems.</span></div></li>
+            <li><span class="path-year">2008</span><div><strong>Strategy & operations</strong><span>Learned how organisations work and where they get stuck.</span></div></li>
+            <li><span class="path-year">2025</span><div><strong>Back to building</strong><span>Making focused products with modern AI tools.</span></div></li>
+          </ol>
+          <p class="aside-note">“The bottleneck is product thinking — knowing what to build and why.”</p>
+        </aside>
       </div>
-      <p class="hero-foot">
-        I started my career as a software engineer in 2002 working on HP-UX systems, before shifting into strategy & operations around 2008. Returning to hands-on building in 2025 with AI tools proved one thing:
-        <strong>The bottleneck is product thinking — knowing what to build and why.</strong>
-      </p>
-    </div>
-  </section>
+      <div class="wrap hero-index" aria-hidden="true"><span>01 / INTRODUCTION</span><span>SCROLL TO EXPLORE ↓</span></div>
+    </section>
 
-  <!-- Projects -->
-  <section id="projects" class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="kicker">Projects</p>
-        <h2>What I'm shipping</h2>
-        <p>Each project starts with a real problem. The technology follows from that, not the other way around.</p>
-      </div>
-      <div class="card-grid card-grid--2">
-        {projects.map((p) => (
-          <article class="card">
-            <div class="card-header">
-              <h3>{p.name}</h3>
-              <span class={`card-status status-${p.status}`}>
-                {p.status === 'live' ? '● live' : '◐ building'}
-              </span>
+    <section id="projects" class="section projects-section" aria-labelledby="projects-title">
+      <div class="wrap">
+        <div class="section-intro">
+          <div><p class="kicker">01 / SELECTED WORK</p><h2 id="projects-title">Built around<br /><em>real problems.</em></h2></div>
+          <p>The best technology gets out of the way. These projects begin with something people actually need to do.</p>
+        </div>
+
+        <div class="project-list">
+          <article class="project-card">
+            <div class="project-content">
+              <div class="project-overline"><span>01 / FAMILY KNOWLEDGE</span><span class="status status-live"><i aria-hidden="true"></i> LIVE</span></div>
+              <h3>LifeLessonsVault</h3>
+              <p class="project-tagline">Keep the stories that make a family yours.</p>
+              <p class="project-description">A personal library for stories, lessons, recipes, and family wisdom. Capture them in text, audio, or video; decide what stays private and what to share.</p>
+              <div class="project-bottom">
+                <div class="project-tags" aria-label="Technologies"><span>React</span><span>Firebase</span><span>AI</span></div>
+                <div class="project-links"><a href="https://lifelessonsvault-4b510.web.app/home" target="_blank" rel="noopener noreferrer">Visit product <span aria-hidden="true">↗</span></a><a href="https://github.com/andimonari/lifelessonsvault" target="_blank" rel="noopener noreferrer">Source <span aria-hidden="true">↗</span></a></div>
+              </div>
             </div>
-            <p class="card-tagline">{p.tagline}</p>
-            <p>{p.description}</p>
-            <div class="card-tags">
-              {p.tags.map((t) => <span class="tag">{t}</span>)}
-            </div>
-            <div class="card-links">
-              {p.live && (
-                <a href={p.live} class="card-link" target="_blank" rel="noopener noreferrer">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                  Live site
-                </a>
-              )}
-              <a href={p.github} class="card-link" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                Source
-              </a>
+            <div class="project-art vault-art" aria-hidden="true">
+              <div class="art-label">LIFE / LESSONS / VAULT</div>
+              <div class="vault-stack">
+                <div class="memory-card memory-card--back"><span>03</span><strong>Family wisdom</strong></div>
+                <div class="memory-card memory-card--middle"><span>02</span><strong>Recipes</strong></div>
+                <div class="memory-card memory-card--front"><span>01</span><strong>Stories worth keeping.</strong><small>Preserve · Remember · Share</small></div>
+              </div>
+              <div class="art-corner">✳</div>
             </div>
           </article>
-        ))}
-      </div>
-    </div>
-  </section>
 
-  <!-- Writing -->
-  <section id="writing" class="section section--tint">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="kicker">Writing</p>
-        <h2>Thinking out loud</h2>
-        <p>Build logs, product thinking, and observations on AI tools. Not tutorials — notes from someone learning in public.</p>
-      </div>
-      {posts.length > 0 ? (
-        <div class="writing-list">
-          {posts.map((p) => (
-            <a href={`/writing/${p.slug}`} class="writing-item">
-              <span class="writing-title">{p.title}</span>
-              <span class="writing-date">{p.display}</span>
-            </a>
-          ))}
+          <article class="project-card">
+            <div class="project-content">
+              <div class="project-overline"><span>02 / LOCAL DISCOVERY</span><span class="status status-building"><i aria-hidden="true"></i> IN PROGRESS</span></div>
+              <h3>CambridgeLocals</h3>
+              <p class="project-tagline">A better welcome to a new city.</p>
+              <p class="project-description">A practical guide for people moving to Cambridge, bringing neighbourhoods, schools, services, and community groups together in one place.</p>
+              <div class="project-bottom">
+                <div class="project-tags" aria-label="Technologies"><span>Next.js</span><span>TypeScript</span><span>Prisma</span></div>
+                <div class="project-links"><a href="https://github.com/andimonari/cambridgelocals" target="_blank" rel="noopener noreferrer">Explore source <span aria-hidden="true">↗</span></a></div>
+              </div>
+            </div>
+            <div class="project-art city-art" aria-hidden="true">
+              <div class="art-label">CAMBRIDGE / UK</div>
+              <div class="map-lines"><span class="map-route"></span><span class="map-pin pin-one"></span><span class="map-pin pin-two"></span><span class="map-pin pin-three"></span></div>
+              <div class="city-caption"><span>Find your place.</span><small>52.1951° N&nbsp; 0.1313° E</small></div>
+            </div>
+          </article>
         </div>
-      ) : (
-        <p class="writing-cta">First post coming soon.</p>
-      )}
-      {posts.length > 0 && (
-        <p class="writing-cta">More posts coming — building in public means writing in public. <a href="/rss.xml" target="_blank">Subscribe via RSS</a></p>
-      )}
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="kicker">About</p>
-        <h2>The longer version</h2>
       </div>
-      <div class="about-prose">
-        <p>
-          I started out as a software engineer back in 2002 working on HP-UX systems, before transitioning away from hands-on technical roles around 2008. Over the next two decades in corporate strategy and operations, I gained a clear view of how organisations work, where systems break, and what real problems actually cost people.
-        </p>
-        <p>
-          In 2025, I returned to hands-on software creation, working almost exclusively with modern AI tools. <strong>Combining deep domain experience with modern AI capabilities is where the real leverage is</strong> — you can move fast when you know exactly what you're building and why.
-        </p>
-        <p>
-          Based in <strong>Cambridge, UK</strong>. Building in public. Happy to talk about products, AI tools,
-          or anything in between — <a href="mailto:a.monari@gmail.com">reach out</a>.
-        </p>
-      </div>
-    </div>
-  </section>
+    </section>
 
+    <section id="writing" class="section notes-section" aria-labelledby="writing-title">
+      <div class="wrap notes-grid">
+        <div class="notes-main">
+          <p class="kicker">02 / FIELD NOTES</p>
+          <h2 id="writing-title">Thinking out loud.</h2>
+          <p class="notes-intro">Short notes on building, product decisions, and what AI tools make possible.</p>
+          {posts.length > 0 ? (
+            <div class="writing-list">
+              {posts.map((p) => (
+                <a href={`/writing/${p.slug}`} class="writing-item">
+                  <span class="writing-copy"><strong>{p.title}</strong>{p.subtitle && <small>{p.subtitle}</small>}</span>
+                  <span class="writing-end"><time datetime={new Date(p.date).toISOString().slice(0, 10)}>{p.display}</time><span aria-hidden="true">↗</span></span>
+                </a>
+              ))}
+            </div>
+          ) : <p class="writing-cta">First note coming soon.</p>}
+          <a class="rss-link" href="/rss.xml">Subscribe via RSS <span aria-hidden="true">↗</span></a>
+        </div>
+        <div id="elsewhere" class="contact-panel">
+          <p class="kicker">03 / ELSEWHERE</p>
+          <h2>The work<br />continues.</h2>
+          <p>More projects, experiments, and source code live on my GitHub profile.</p>
+          <a href="https://github.com/andimonari" target="_blank" rel="noopener noreferrer" class="contact-link">Explore GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
 </Base>
